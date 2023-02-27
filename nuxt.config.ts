@@ -18,11 +18,9 @@ export default defineNuxtConfig({
 
       modules: ['@pinia/nuxt'],
       runtimeConfig: {
-        // The private keys which are only available server-side
-        apiSecret: '',
-        // Keys within public are also exposed client-side
         public: {
-          apiBase: ''
+          apiBase: '',
+          apiSecret: '',
         }
       }
 })

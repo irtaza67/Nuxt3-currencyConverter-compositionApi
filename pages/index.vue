@@ -4,7 +4,7 @@
   </div>
 </template>
 <script setup>
-import { ref, computed,provide  } from "vue";
+import { ref, computed,provide,onMounted  } from "vue";
 import { useFiltersStore } from '~/stores/currency'
 import { storeToRefs } from 'pinia'
 import CurrencyTable from '~/components/CurrencyTable.vue'
@@ -15,9 +15,8 @@ import CurrencyTable from '~/components/CurrencyTable.vue'
     const query = ref('')
 
 // call the action as a method of the store
-    onMounted(() => {
-        store.addValueToFilterList()
-    })
+ store.addValueToFilterList(runtimeConfig.apiSecret)
+
     const currencies = computed(() => store.getfiltersList)
     const currenciesUnFiltered = computed(() => store.filtersList)
     const totalCurrencies = computed(() => currencies.value.length || 20)

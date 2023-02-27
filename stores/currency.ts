@@ -16,8 +16,9 @@ export const useFiltersStore = defineStore({
   },
   actions: {
     async addValueToFilterList() {
-        console.log('i am called')
-        const {data} : {data: any} = await axios('https://api.currencyapi.com/v3/latest?apikey=Pz6JdEFtfQcxYgTqgFusFS2OKivyGArqPkrvauUz')
+        const runtimeConfig = useRuntimeConfig()
+        console.log('i am called', runtimeConfig,runtimeConfig.public)
+        const {data} : {data: any} = await axios(`${runtimeConfig.public.apiBase}/v3/latest?apikey=${runtimeConfig.public.apiSecret}`)
         for(let x in data.data){
             let a = data.data
             this.filtersList.push(a[x])
@@ -29,6 +30,9 @@ export const useFiltersStore = defineStore({
     },
     search(q) {
         this.filteredCurrency = this.filtersList.filter((el) => el.code.includes(q.toUpperCase()));
+    },
+    paginate(){
+
     },
     sortByNameAsc() {
         // this.filteredCurrency = this.filtersList.sort((a,b)=> a.value > b.value)
