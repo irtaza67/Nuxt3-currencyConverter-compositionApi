@@ -16,7 +16,7 @@ import CurrencyTable from '~/components/CurrencyTable.vue'
 
 // call the action as a method of the store
     onMounted(() => {
-        // store.addValueToFilterList()
+        store.addValueToFilterList()
     })
     const currencies = computed(() => store.getfiltersList)
     const currenciesUnFiltered = computed(() => store.filtersList)

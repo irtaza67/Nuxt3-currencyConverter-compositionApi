@@ -22,6 +22,7 @@ export const useFiltersStore = defineStore({
             let a = data.data
             this.filtersList.push(a[x])
         } 
+        this.filtersList = this.filtersList.slice(0,50)
         this.filteredCurrency = [...this.filtersList]
         console.log('type of filtered',typeof this.filtersList)            
         console.log(data.data)
