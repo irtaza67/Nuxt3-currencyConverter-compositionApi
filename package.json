@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "overrides": {
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
+    "autoprefixer": "^10.4.13",
+    "nuxt": "^3.2.2",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "@pinia/nuxt": "^0.4.7",
+    "bootstrap": "^5.2.3",
+    "bootstrap-vue": "^2.23.1",
+    "pinia": "^2.0.32",
+    "sass": "^1.58.3",
+    "vue-awesome-paginate": "^1.1.46",
+    "vuetify": "^3.1.4"
+  }
+}

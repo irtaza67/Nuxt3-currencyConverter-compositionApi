@@ -1,0 +1,52 @@
+.cursor-pointer{
+    cursor: pointer;
+}
+
+select {
+    background: rgb(128 128 128 / 10%);;
+    border-radius: 4px;
+}
+.select-wrapper{
+    position: relative;
+    cursor: pointer;
+    &:after {
+        content: "";
+        width: 30px;
+        height: 30px;
+        background:url("images/down-arrow.png") no-repeat  ;
+        top: 10px;
+        right: 6px;
+        position: absolute;
+        z-index: -1;
+        display: inline-block;
+    }
+}
+.search-field {
+    &:after {
+        content: "";
+        width: 30px;
+        height: 30px;
+        background:url("images/search.png") no-repeat  ;
+        top: 10px;
+        right: 6px;
+        position: absolute;
+        z-index: -1;
+        display: inline-block;
+    }
+}
+.currency-table {
+    tr {
+        &:first-child {
+            background: rgb(128 128 128 / 37%);
+        }
+        th {
+            cursor: pointer;
+            transition: .4s;
+            &:hover {
+                background: rgb(203 199 199);
+                transition: .4s;
+
+            }
+        }
+    }
+}
