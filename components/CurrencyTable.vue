@@ -23,7 +23,7 @@
           </v-row>
           <br v-if="!currency.length && !query" />
           <div
-            class="w-50 text-center ma-12 error-text"
+            class="text-center ma-12 error-text"
             v-if="!currency.length && query"
           >
             <img src="/images/search-icon.png" />

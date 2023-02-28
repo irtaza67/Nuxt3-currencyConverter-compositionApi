@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup>
-import { ref, computed,provide,onMounted  } from "vue";
+import { ref, computed,provide,onMounted ,onServerPrefetch } from "vue";
 import { useFiltersStore } from '~/stores/currency'
 import { storeToRefs } from 'pinia'
 import CurrencyTable from '~/components/CurrencyTable.vue'
@@ -21,8 +21,11 @@ import CurrencyTable from '~/components/CurrencyTable.vue'
     const query = ref('')
 
 // call the action as a method of the store
+    onServerPrefetch(async () => {
+        store.getCurrency()
+    })
     onMounted(async () => {
-          store.getCurrency()
+        store.getCurrency()
     })
 
     const currencies = computed(() => store.getfiltersList)
