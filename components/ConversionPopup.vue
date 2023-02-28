@@ -187,7 +187,7 @@ const defaultAmount =  ref(1)
 const defulConversion = computed(() => currenciesUnFiltered.value.filter((curr)=> curr.code === 'EUR'))
 const fromCurr = ref({code:defulConversion.value[0].code, value:defulConversion.value[0].value})
 const toCurr = ref({code:currencySelected.value.code, value:currencySelected.value.value})
-const reversConversion = computed(() => defaultAmount.value/convertAmount.value)
+const reversConversion = computed(() => defaultAmount.value/convertAmountForOne.value)
 const convertAmount =computed(()=>{
     if(fromCurr.value.code === defulConversion.value[0].code) {
       console.log('if')
