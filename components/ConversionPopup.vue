@@ -1,112 +1,90 @@
 <template>
   <v-row justify="center">
-    <v-dialog
-      v-model="dialog"
-      persistent
-      width="1024"
-    >
+    <v-dialog v-model="dialog" persistent width="1024">
       <v-card>
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col
-                cols="12"
-                sm="4"
-                md="4"
-              >
-              <div class="select-wrapper">
-              <select name="" id="" v-model="fromCurr" class="px-3 py-3 w-100">
-                <option
-                  v-for="curr in currenciesUnFiltered"
-                  :value="{code:curr.code,value:curr.value}"
-                  :key="curr.code"
-                >
-                  {{curr.code}}
-                </option>
-              </select>
-              </div>
+              <v-col cols="12" sm="4" md="4">
+                <div class="select-wrapper">
+                  <select
+                    name=""
+                    id=""
+                    v-model="fromCurr"
+                    class="px-3 py-3 w-100"
+                  >
+                    <option
+                      v-for="curr in currenciesUnFiltered"
+                      :value="{code:curr.code,value:curr.value}"
+                      :key="curr.code"
+                    >
+                      {{curr.code}}
+                    </option>
+                  </select>
+                </div>
               </v-col>
-              <v-col
-                cols="12"
-                sm="4"
-                md="4"
-                class="text-center"
-              >
-<img src="/images/converted.png" />
+              <v-col cols="12" sm="4" md="4" class="text-center">
+                <img src="/images/converted.png" />
               </v-col>
-              <v-col
-                cols="12"
-                sm="4"
-                md="4"
-              >
-              <div class="select-wrapper">
-              <select name="" id="" v-model="toCurr" class="aa px-3 py-3 w-100">
-                <option
-                  v-for="curr in currenciesUnFiltered"
-                  :value="{code:curr.code,value:curr.value}"
-                  :key="curr.code"
-                >
-                  {{curr.code}}
-                </option>
-              </select>
-              </div>
+              <v-col cols="12" sm="4" md="4">
+                <div class="select-wrapper">
+                  <select
+                    name=""
+                    id=""
+                    v-model="toCurr"
+                    class="aa px-3 py-3 w-100"
+                  >
+                    <option
+                      v-for="curr in currenciesUnFiltered"
+                      :value="{code:curr.code,value:curr.value}"
+                      :key="curr.code"
+                    >
+                      {{curr.code}}
+                    </option>
+                  </select>
+                </div>
               </v-col>
-              
-              <v-col
-                 cols="12"
-                sm="4"
-                md="4"
-              >
-               <v-text-field
+
+              <v-col cols="12" sm="4" md="4">
+                <v-text-field
                   label="Enter amount to convert"
                   type="input"
-                  v-model="amount"
+                  v-model.number="amount"
                 ></v-text-field>
               </v-col>
-                            <v-col
-                cols="12"
-                sm="4"
-                md="4"
-              ></v-col>
-              <v-col
-                    cols="12"
-                sm="4"
-                md="4"
-              >
-              <v-btn color="success" @click="convert">Convert</v-btn>
-
+              <v-col cols="12" sm="4" md="4"></v-col>
+              <v-col cols="12" sm="4" md="4">
+                <v-btn color="success" @click="convert">Convert</v-btn>
               </v-col>
               <v-col cols="12">
-              <v-table>
-                <tbody>
-                  <tr>
-                    <td class="font-weight-bold">1 {{fromCurr.code}}</td>
-                    <td class="font-weight-bold">{{toCurr.value}} {{toCurr.code}}</td>
-                  </tr>
+                <v-table>
+                  <tbody>
+                    <tr>
+                      <td class="font-weight-bold">1 {{fromCurr.code}}</td>
+                      <td class="font-weight-bold">
+                        {{toCurr.value}} {{toCurr.code}}
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <td>
-                      {{defaultAmount}} {{fromCurr.code}} =
-                      {{convertAmount.toFixed(6)}} {{toCurr.code}}
-                    </td>
-                    <td>
-                      {{defaultAmount}} {{toCurr.code}} =
-                      {{reversConversion.toFixed(6)}} {{fromCurr.code}}
-                    </td>
-                  </tr>
-                </tbody>
-              </v-table>
+                    <tr>
+                      <td>
+                        {{defaultAmount}} {{fromCurr.code}} =
+                        {{convertAmount.toFixed(6)}} {{toCurr.code}}
+                      </td>
+                      <td>
+                        {{defaultAmount}} {{toCurr.code}} =
+                        {{reversConversion.toFixed(6)}} {{fromCurr.code}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </v-table>
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-            color="blue-darken-1"
-            variant="text"
-           @click="dialogClose"
-          >
+          <v-btn color="blue-darken-1" variant="text" @click="dialogClose">
             Close
           </v-btn>
         </v-card-actions>
@@ -219,10 +197,13 @@ const convertAmount =computed(()=>{
       return (defaultAmount.value/fromCurr.value.value)*toCurr.value.value
     }
 })
+
 const convert = ()=>{
     defaultAmount.value = amount.value || 1
 }
+
 const dialogClose = ()=>{
     emit('dialogClose', false)
 }
+
 </script>

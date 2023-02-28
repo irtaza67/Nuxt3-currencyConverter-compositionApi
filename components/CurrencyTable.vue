@@ -1,5 +1,5 @@
 <template>
-  <h2 class="text-center">EURO CURRENCY EXCHANGE RATE</h2>
+  <h2 class="text-center mt-4 mb-3">EURO CURRENCY EXCHANGE RATE</h2>
   <v-container class="bg-surface-variant">
     <v-row justify="center" no-gutters>
       <v-col cols="12" sm="8">
@@ -18,7 +18,7 @@
             >
             </v-text-field>
           </v-card-text>
-          <br />
+          <br v-if="!currency.length && !query"/>
           <div class="w-50 text-center ma-12" v-if="!currency.length && query">
             <img src="/images/search-icon.png" />
             <h3>
@@ -33,8 +33,8 @@
             :size="90"
             :width="7"
           ></v-progress-circular>
-          <br />
-          <v-table v-if="currency.length" class="currency-table">
+          <br v-if="!currency.length && !query"/>
+          <v-table v-if="currency.length" class="currency-table mb-3">
             <thead>
               <tr>
                 <th
@@ -71,7 +71,7 @@
             :items-per-page="10"
             :max-pages-shown="5"
             v-model="currentPage"
-            :on-click="onClickHandler"
+            :on-click="paginate"
           />
           <ConversionPopup
             v-if="dialog"
@@ -91,7 +91,7 @@ import { defineAsyncComponent } from 'vue'
 const ConversionPopup = defineAsyncComponent(() => import('~/components/ConversionPopup.vue'))
 
 const props = defineProps(['totalCurrencies', 'currency'])
-const emit = defineEmits(['sortByval','sortByName','searchByQuery'])
+const emit = defineEmits(['sortByval','sortByName','searchByQuery','paginate'])
 let dialog = ref(false)
 const currentPage = ref(1)
 const query = ref('')
@@ -106,6 +106,9 @@ const sortByName = (order)=>{
 }
 const searchByQuery = (q)=>{
     emit('searchByQuery', q)
+}
+const paginate = (p)=>{
+    emit('paginate', p)
 }
 const dialogOpen = (curr)=>{
     dialog.value = true

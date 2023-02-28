@@ -15,30 +15,31 @@ export const useFiltersStore = defineStore({
     }
   },
   actions: {
-    async addValueToFilterList() {
+    async getCurrency() {
         const runtimeConfig = useRuntimeConfig()
-        console.log('i am called', runtimeConfig,runtimeConfig.public)
         const {data} : {data: any} = await axios(`${runtimeConfig.public.apiBase}/v3/latest?apikey=${runtimeConfig.public.apiSecret}`)
         for(let x in data.data){
             let a = data.data
             this.filtersList.push(a[x])
         } 
-        this.filtersList = this.filtersList.slice(0,50)
         this.filteredCurrency = [...this.filtersList]
         console.log('type of filtered',typeof this.filtersList)            
         console.log(data.data)
     },
-    search(q) {
+    search(q:string) {
         this.filteredCurrency = this.filtersList.filter((el) => el.code.includes(q.toUpperCase()));
     },
-    paginate(){
-
+    paginate(page: number){
+        let perPage = 10
+        this.filteredCurrency = this.filtersList.slice(Math.abs((page*perPage)-perPage),page*perPage)
+        console.log(page,this.filteredCurrency)
     },
     sortByNameAsc() {
-        // this.filteredCurrency = this.filtersList.sort((a,b)=> a.value > b.value)
+      this.filteredCurrency.sort((a,b) => (a.code > b.code) ? 1 : ((b.code > a.code) ? -1 : 0))
     },
     sortByNameDesc() {
-        this.filteredCurrency.reverse()
+      this.filteredCurrency.sort((a,b) => a.code < b.code ? 1 : -1)
+
     },
     sortByValAsc() {
         this.filteredCurrency.sort((a,b) => a.value - b.value)
@@ -48,8 +49,6 @@ export const useFiltersStore = defineStore({
     }
   },
   getters: {
-    getfiltersList: state => state.filteredCurrency.slice(0,50),
-    currencyUnfiltered: state => state.filtersList.slice(0,50),
-
+    getfiltersList: state => state.filteredCurrency.slice(0,9)
   }
 })
