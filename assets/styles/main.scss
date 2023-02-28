@@ -21,7 +21,8 @@ select {
         display: inline-block;
     }
 }
-.search-field {
+.currency-table-wrapper {
+.v-field {
     &:after {
         content: "";
         width: 30px;
@@ -33,7 +34,10 @@ select {
         z-index: -1;
         display: inline-block;
     }
+
 }
+}
+
 .v-progress-circular {
     left: 50%;
 transform: translateX(-50%);

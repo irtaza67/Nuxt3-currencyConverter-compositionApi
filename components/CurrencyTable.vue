@@ -4,22 +4,28 @@
     <v-row justify="center" no-gutters>
       <v-col cols="12" sm="8">
         <div class="currency-table-wrapper">
-          <v-card-text>
-            <v-text-field
-              density="compact"
-              variant="solo"
-              class="w-50"
-              label="Search currency"
-              append-inner-icon="mdi-magnify"
-              single-line
-              hide-details
-              v-model="query"
-              @input="searchByQuery(query)"
-            >
-            </v-text-field>
-          </v-card-text>
-          <br v-if="!currency.length && !query"/>
-          <div class="w-50 text-center ma-12" v-if="!currency.length && query">
+          <v-row justify="left" no-gutters>
+            <v-col cols="8" sm="5">
+              <v-card-text>
+                <v-text-field
+                  density="compact"
+                  variant="solo"
+                  label="Search currency"
+                  append-inner-icon="mdi-magnify"
+                  single-line
+                  hide-details
+                  v-model="query"
+                  @input="searchByQuery(query)"
+                >
+                </v-text-field>
+              </v-card-text>
+            </v-col>
+          </v-row>
+          <br v-if="!currency.length && !query" />
+          <div
+            class="w-50 text-center ma-12 error-text"
+            v-if="!currency.length && query"
+          >
             <img src="/images/search-icon.png" />
             <h3>
               Hmm, we are not getting any results.Our bad-try another search
@@ -33,7 +39,7 @@
             :size="90"
             :width="7"
           ></v-progress-circular>
-          <br v-if="!currency.length && !query"/>
+          <br v-if="!currency.length && !query" />
           <v-table v-if="currency.length" class="currency-table mb-3">
             <thead>
               <tr>
@@ -69,7 +75,7 @@
           <vue-awesome-paginate
             :total-items="totalCurrencies"
             :items-per-page="10"
-            :max-pages-shown="5"
+            :max-pages-shown="3"
             v-model="currentPage"
             :on-click="paginate"
           />
