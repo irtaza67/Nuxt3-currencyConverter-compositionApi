@@ -62,7 +62,7 @@
                     <tr>
                       <td class="font-weight-bold">1 {{fromCurr.code}}</td>
                       <td class="font-weight-bold">
-                        {{toCurr.value}} {{toCurr.code}}
+                        {{convertAmountForOne.toFixed(6)}} {{toCurr.code}}
                       </td>
                     </tr>
 
@@ -196,6 +196,9 @@ const convertAmount =computed(()=>{
       console.log('else')
       return (defaultAmount.value/fromCurr.value.value)*toCurr.value.value
     }
+})
+const convertAmountForOne =computed(()=>{
+  return convertAmount.value/defaultAmount.value
 })
 
 const convert = ()=>{
