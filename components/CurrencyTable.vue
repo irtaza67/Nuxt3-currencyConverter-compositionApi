@@ -5,7 +5,7 @@
       <v-col cols="12" sm="8">
         <div class="currency-table-wrapper">
           <v-row justify="left" no-gutters>
-            <v-col cols="8" sm="5">
+            <v-col cols="9" sm="5">
               <v-card-text>
                 <v-text-field
                   density="compact"
